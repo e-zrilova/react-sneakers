@@ -25,7 +25,7 @@ function App() {
         </ul>
       </header>
       <div className="content p-40">
-        <h1>Все кроссовки</h1>
+        <h1 className="mb-30">Все кроссовки</h1>
         <div className="d-flex">
           <div className="card">
             <img width={133} height={112} src="/img/sneakers/img-1.jpg" alt="sneakers" />
