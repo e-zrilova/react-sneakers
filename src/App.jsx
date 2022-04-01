@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { Header } from "./components/Header";
 import { Card } from "./components/Card/Card";
 import { Drawer } from "./components/Drawer";
@@ -9,12 +10,10 @@ function App() {
   const [searchValue, setSearchValue] = React.useState("");
   const [cartOpened, setCartOpened] = React.useState(false);
   React.useEffect(() => {
-    fetch("https://62445a0039aae3e3b74effdb.mockapi.io/items")
+    axios
+      .get("https://62445a0039aae3e3b74effdb.mockapi.io/items")
       .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        setDataCard(json);
+        setDataCard(res.data);
       });
   }, []);
 
@@ -25,6 +24,7 @@ function App() {
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
+
   return (
     <div className="wrapper clear">
       {cartOpened && (
@@ -59,7 +59,7 @@ function App() {
         </div>
         <div className="d-flex flex-wrap">
           {DATA_CARD.filter((item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase)
+            item.title.toLowerCase().includes(searchValue.toLowerCase())
           ).map(({ title, imageUrl, price, id }) => (
             <Card
               key={id}
