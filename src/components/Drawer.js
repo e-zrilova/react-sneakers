@@ -1,4 +1,4 @@
-export function Drawer({ onClose, DATA_CART = [] }) {
+export function Drawer({ onClose, DATA_CART = [], onRemove }) {
   return (
     <div className="overlay">
       <div className="drawer">
@@ -31,6 +31,7 @@ export function Drawer({ onClose, DATA_CART = [] }) {
                 src="/img/btn-remove.svg"
                 alt="remove"
                 className="removeBtn"
+                onClick={() => onRemove(id)}
               />
             </div>
           ))}
